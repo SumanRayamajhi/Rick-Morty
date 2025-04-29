@@ -46,39 +46,43 @@ export default function CharactersDetailPage() {
   }
 
   return (
-    <div className="container mx-auto p-6 w-full">
+    <div className="container mx-auto w-full lg:flex lg:w-[40rem] justify-center mt-16 shadow-md gap-4">
       <div>
         <Image
           src={character.image}
           alt={character.name}
           width={300}
           height={300}
-          className="mx-auto object-cover"
+          className="mx-auto rounded-sm object-cover h-full"
         />
       </div>
-      <h1 className="text-3xl font-bold text-center mt-4">{character.name}</h1>
-      <div className="mt-4 text-center font-bold">
-        <p>
-          Status:
-          <span
-            className={`font-semibold px-1.5 py-0.5 rounded-md ${
-              character.status === "Alive"
-                ? "bg-green-500"
-                : character.status === "Dead"
-                ? "bg-red-500"
-                : "bg-gray-400"
-            }`}
-          >
-            {character.status}
-          </span>
-        </p>
+      <div className="text-center lg:text-start font-bold gap-2">
+        <h1 className="text-3xl font-bold text-center mb-4">
+          {character.name}
+        </h1>
+        <div className="py-7">
+          <p>
+            Status:
+            <span
+              className={`font-semibold px-1.5 py-0.5 rounded-md ${
+                character.status === "Alive"
+                  ? "bg-green-500"
+                  : character.status === "Dead"
+                  ? "bg-red-500"
+                  : "bg-gray-400"
+              }`}
+            >
+              {character.status}
+            </span>
+          </p>
 
-        <p>Species: {character.species}</p>
-        <p>Type: {character.type || "Unknown"}</p>
-        <p>Gender: {character.gender}</p>
-        <p>Origin: {character.origin.name}</p>
-        <p>Location: {character.location.name}</p>
-        <p>Created: {character.created}</p>
+          <p>Species: {character.species}</p>
+          <p>Type: {character.type || "Unknown"}</p>
+          <p>Gender: {character.gender}</p>
+          <p>Origin: {character.origin.name}</p>
+          <p>Location: {character.location.name}</p>
+          <p>Created: {character.created}</p>
+        </div>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ function Navbar() {
             <Link href="/">Home</Link>
           </div>
           <div>
-            <Link href="/">Favourite</Link>
+            <Link href="/favorite">Favorite</Link>
           </div>
         </div>
       </div>
