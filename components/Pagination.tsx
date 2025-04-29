@@ -1,3 +1,4 @@
+import { Span } from "next/dist/trace";
 import ReactPaginate from "react-paginate";
 
 export default function Pagination({
@@ -14,8 +15,16 @@ export default function Pagination({
       <ReactPaginate
         className="flex gap-4 text-lg"
         activeClassName="font-bold underline"
-        previousLabel="Prev"
-        nextLabel="Next"
+        previousLabel={
+          <span className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded">
+            Prev
+          </span>
+        }
+        nextLabel={
+          <span className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded">
+            Next
+          </span>
+        }
         forcePage={pageNumber - 1}
         pageCount={totalPages}
         onPageChange={(data) => setPageNumber(data.selected + 1)}
