@@ -26,39 +26,41 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
+  const fetchDataFromApi = async () => {
+    setLoading(true);
+    let url = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
+    if (search !== "") {
+      url += `&name=${search}`;
+    }
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Not Found");
+      }
+      const data: ApiResponse = await res.json();
+      setFetchData(data);
+      setError(false);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      }
+      setError(true);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchDataFromApi = async () => {
+    const delayDebounce = setTimeout(() => {
       setLoading(true);
-      try {
-        const res = await fetch(api);
-        if (!res.ok) {
-          throw new Error("Not Found");
-        }
-        const data: ApiResponse = await res.json();
-        setFetchData(data);
-        setError(false);
-      } catch (err) {
-        if (err instanceof Error) {
-          console.error(err.message);
-        }
-        setError(true);
-      }
-      setLoading(false);
-    };
-
-    fetchDataFromApi();
+      fetchDataFromApi();
+    }, 300);
+    return () => clearTimeout(delayDebounce);
   }, [pageNumber, search]);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
-
-  if (error)
-    return (
-      <div className="text-center text-red-500 font-bold py-10">
-        No Characters Found 😔
-      </div>
-    );
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setPageNumber(1);
+  };
 
   return (
     <main className="container mx-auto p-6">
@@ -66,14 +68,28 @@ export default function HomePage() {
         Rick and Morty Characters
       </h1>
 
-      <Search setSearch={setSearch} setPageNumber={setPageNumber} />
+      <Search search={search} searchHandler={searchHandler} />
 
-      <Cards results={fetchData?.results || []} />
-      <Pagination
-        pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        totalPages={fetchData?.info.pages || 1}
-      />
+      {loading && (
+        <div className="text-center py-4 text-gray-500">Loading...</div>
+      )}
+
+      {!loading && error && (
+        <div className="text-center text-red-500 font-bold py-10">
+          No Characters Found 😔
+        </div>
+      )}
+
+      {!loading && !error && (
+        <>
+          <Cards results={fetchData?.results || []} />
+          <Pagination
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            totalPages={fetchData?.info.pages || 1}
+          />
+        </>
+      )}
     </main>
   );
 }
