@@ -1,7 +1,20 @@
 import Link from "next/link";
 import React from "react";
 
-function Navbar() {
+interface Character {
+  id: number;
+  name: string;
+  image: string;
+  species: string;
+  status: string;
+  origin: { name: string };
+}
+
+interface NavbarProps {
+  favorites: { [key: number]: Character };
+}
+
+function Navbar({ favorites }: NavbarProps) {
   return (
     <div className="h-[10vh] bg-slate-100">
       <div className="flex justify-between  px-16 py-4">
@@ -13,7 +26,10 @@ function Navbar() {
             <Link href="/">Home</Link>
           </div>
           <div>
-            <Link href="/favorite">Favorite</Link>
+            <Link href="/favorite">
+              Favorite
+              <span>({Object.keys(favorites).length})</span>
+            </Link>
           </div>
         </div>
       </div>
