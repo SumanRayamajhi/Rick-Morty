@@ -1,4 +1,3 @@
-import { Span } from "next/dist/trace";
 import ReactPaginate from "react-paginate";
 
 export default function Pagination({

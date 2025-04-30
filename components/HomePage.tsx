@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Cards from "@/components/Cards";
 import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
+import Navbar from "./Navbar";
 
 interface Character {
   id: number;
@@ -17,6 +18,9 @@ interface Character {
 interface ApiResponse {
   info: { pages: number };
   results: Character[];
+  onAddFavorite: (char: Character) => void;
+  onRemoveFavorite: (id: number) => void;
+  isFavorite: (id: number) => void;
 }
 
 export default function HomePage() {
@@ -25,6 +29,23 @@ export default function HomePage() {
   const [fetchData, setFetchData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [favorites, setFavorites] = useState<{ [key: number]: Character }>({});
+
+  const handleAddFavorite = (character: Character) => {
+    setFavorites((prev) => ({ ...prev, [character.id]: character }));
+  };
+
+  const handleRemoveFavorite = (id: number) => {
+    setFavorites((prev) => {
+      const updated = { ...prev };
+      delete updated[id];
+      return updated;
+    });
+  };
+
+  const isFavorite = (id: number) => {
+    return favorites.hasOwnProperty(id);
+  };
 
   const fetchDataFromApi = async () => {
     setLoading(true);
@@ -64,6 +85,7 @@ export default function HomePage() {
 
   return (
     <main className="container mx-auto p-6">
+      <Navbar favorites={favorites} />
       <h1 className="text-4xl font-bold text-center mb-10">
         Rick and Morty Characters
       </h1>
@@ -82,7 +104,12 @@ export default function HomePage() {
 
       {!loading && !error && (
         <>
-          <Cards results={fetchData?.results || []} />
+          <Cards
+            results={fetchData?.results || []}
+            onAddFavorite={handleAddFavorite}
+            onRemoveFavorite={handleRemoveFavorite}
+            isFavorite={isFavorite}
+          />
           <Pagination
             pageNumber={pageNumber}
             setPageNumber={setPageNumber}
