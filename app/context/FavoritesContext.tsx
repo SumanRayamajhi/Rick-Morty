@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface Character {
   id: number;
@@ -29,6 +35,17 @@ export function useFavorites() {
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
   const [favorites, setFavorites] = useState<{ [key: number]: Character }>({});
+
+  useEffect(() => {
+    const saved = localStorage.getItem("rick-morty-favorites");
+    if (saved) {
+      setFavorites(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("rick-morty-favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   const addFavorite = (char: Character) => {
     setFavorites((prev) => ({ ...prev, [char.id]: char }));

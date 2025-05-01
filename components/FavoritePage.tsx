@@ -11,7 +11,7 @@ export default function FavoritePage() {
 
   return (
     <Container className="p-10">
-      <h1 className="text-3xl font-bold text-center mb-8">
+      <h1 className="text-3xl font-bold text-center mb-8 mt-12">
         Favorite Characters
       </h1>
 
