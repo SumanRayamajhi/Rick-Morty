@@ -9,7 +9,7 @@ function Navbar() {
     <div className="h-[10vh] bg-slate-100">
       <div className="flex justify-between  px-16 py-4">
         <Link href="/" className="cursor-pointer">
-          <h2>Ricky-Morty</h2>
+          <h2 className="font-bold">Ricky-Morty</h2>
         </Link>
         <div className="flex justify-center items-center gap-4">
           <div>
