@@ -79,7 +79,7 @@ export default function Cards({
               >
                 <p className="flex text-gray-600">
                   Add to Favorite:
-                  <span className="ml-2  cursor-pointer relative top-1">
+                  <span className="ml-2 cursor-pointer relative top-1">
                     <FaRegHeart className="" />
                   </span>
                 </p>
