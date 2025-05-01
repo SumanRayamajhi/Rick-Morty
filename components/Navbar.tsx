@@ -13,9 +13,11 @@ function Navbar() {
         </Link>
         <div className="flex justify-center items-center gap-4">
           <div>
-            <Link href="/">Home</Link>
+            <Link href="/" className="font-semibold">
+              Home
+            </Link>
           </div>
-          <div className="relative inline-block">
+          <div className="relative inline-block font-semibold">
             <Link href="/favorite" className="flex items-center space-x-1">
               {Object.keys(favorites).length > 0 && (
                 <span className="absolute -top-1 -right-5 bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
