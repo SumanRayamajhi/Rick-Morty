@@ -15,10 +15,14 @@ function Navbar() {
           <div>
             <Link href="/">Home</Link>
           </div>
-          <div>
-            <Link href="/favorite">
+          <div className="relative inline-block">
+            <Link href="/favorite" className="flex items-center space-x-1">
+              {Object.keys(favorites).length > 0 && (
+                <span className="absolute -top-1 -right-5 bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+                  {Object.keys(favorites).length}
+                </span>
+              )}
               Favorite
-              <span>({Object.keys(favorites).length})</span>
             </Link>
           </div>
         </div>
