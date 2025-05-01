@@ -13,7 +13,7 @@ interface Character {
 
 interface CardsProps {
   results: Character[];
-  onAddFavorite: (char: Character) => void;
+  onAddFavorite?: (char: Character) => void;
   onRemoveFavorite: (id: number) => void;
   isFavorite: (id: number) => boolean;
 }
@@ -70,7 +70,13 @@ export default function Cards({
                 </p>
               </button>
             ) : (
-              <button onClick={() => onAddFavorite(character)}>
+              <button
+                onClick={() => {
+                  if (!isFavorite(character.id) && onAddFavorite) {
+                    onAddFavorite(character);
+                  }
+                }}
+              >
                 <p className="flex text-gray-600">
                   Add to Favorite:
                   <span className="ml-2  cursor-pointer relative top-1">
