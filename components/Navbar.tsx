@@ -1,20 +1,10 @@
+"use client";
+
+import { useFavorites } from "@/app/context/FavoritesContext";
 import Link from "next/link";
-import React from "react";
 
-interface Character {
-  id: number;
-  name: string;
-  image: string;
-  species: string;
-  status: string;
-  origin: { name: string };
-}
-
-interface NavbarProps {
-  favorites: { [key: number]: Character };
-}
-
-function Navbar({ favorites }: NavbarProps) {
+function Navbar() {
+  const { favorites } = useFavorites();
   return (
     <div className="h-[10vh] bg-slate-100">
       <div className="flex justify-between  px-16 py-4">
