@@ -69,7 +69,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="container mx-auto p-6">
+    <main className="container mx-auto p-6 px-16">
       <h1 className="text-4xl font-bold text-center mb-10 mt-12">
         Rick and Morty Characters
       </h1>
