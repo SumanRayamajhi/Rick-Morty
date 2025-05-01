@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Container } from "react-bootstrap";
 import Cards from "@/components/Cards";
 import { useFavorites } from "@/app/context/FavoritesContext";
 
@@ -10,8 +9,8 @@ export default function FavoritePage() {
   const charactersArr = Object.values(favorites);
 
   return (
-    <Container className="pt-10">
-      <h1 className="text-3xl font-bold text-center mb-8">
+    <div className="p-10 px-16">
+      <h1 className="text-3xl font-bold text-center mb-8 mt-12">
         Favorite Characters
       </h1>
 
@@ -25,6 +24,6 @@ export default function FavoritePage() {
           isFavorite={isFavorite}
         />
       )}
-    </Container>
+    </div>
   );
 }
