@@ -6,7 +6,7 @@ import Link from "next/link";
 function Navbar() {
   const { favorites } = useFavorites();
   return (
-    <div className="h-[10vh] bg-slate-100 fixed w-full z-20">
+    <div className="h-[10vh] bg-slate-100">
       <div className="flex justify-between  px-16 py-4">
         <Link href="/" className="cursor-pointer">
           <h2>Ricky-Morty</h2>
@@ -15,14 +15,10 @@ function Navbar() {
           <div>
             <Link href="/">Home</Link>
           </div>
-          <div className="relative inline-block">
-            <Link href="/favorite" className="flex items-center space-x-1">
+          <div>
+            <Link href="/favorite">
               Favorite
-              {Object.keys(favorites).length > 0 && (
-                <span className="absolute -top-2 -right-5 bg-white text-red-600 text-xs font-bold px-2 py-0.5 rounded-full border-red-600">
-                  {Object.keys(favorites).length}
-                </span>
-              )}
+              <span>({Object.keys(favorites).length})</span>
             </Link>
           </div>
         </div>
