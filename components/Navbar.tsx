@@ -25,7 +25,7 @@ function Navbar() {
           <div className="relative font-semibold">
             <Link href="/favorite" className="flex items-center space-x-1">
               {Object.keys(favorites).length > 0 && (
-                <span className="absolute -top-1 -right-5 bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+                <span className="absolute -top-1 -right-5 bg-slate-100 text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
                   {Object.keys(favorites).length}
                 </span>
               )}
@@ -40,20 +40,20 @@ function Navbar() {
         >
           {menuOpen ? <X size={24} /> : <Menu size={23} />}
           {menuOpen && (
-            <div className="md:hidden px-6 pb-4 flex flex-col gap-4">
+            <div className="absolute top-full left-0 w-full bg-slate-100 shadow-md z-10 md:hidden px-6 pb-4 flex flex-col justify-center items-center gap-4 transition-all duration-500">
               <Link href="/" className="font-semibold hover:text-blue-500">
                 Home
               </Link>
               <Link
                 href="/favorite"
-                className="relative font-semibold hover:text-blue-500"
+                className="font-semibold hover:text-blue-500 flex items-center gap-2"
               >
+                Favorite
                 {Object.keys(favorites).length > 0 && (
-                  <span className="absolute -top-1 -right-4 bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+                  <span className="bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
                     {Object.keys(favorites).length}
                   </span>
                 )}
-                Favorite
               </Link>
             </div>
           )}
