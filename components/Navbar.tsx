@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 function Navbar() {
   const { favorites } = useFavorites();
   const [menuOpen, setMenuOpen] = useState(false);
+  const favoriteCount = Object.keys(favorites).length;
 
   return (
     <div className="h-[10vh] bg-slate-100 fixed top-0 w-full z-50 shadow-sm">
@@ -35,29 +36,32 @@ function Navbar() {
         </div>
 
         <button
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
           className="flex md:hidden text-black cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={24} /> : <Menu size={23} />}
-          {menuOpen && (
-            <div className="absolute top-full left-0 w-full bg-slate-100 shadow-md z-10 md:hidden px-6 pb-4 flex flex-col justify-center items-center gap-4 transition-all duration-500">
-              <Link href="/" className="font-semibold hover:text-blue-500">
-                Home
-              </Link>
-              <Link
-                href="/favorite"
-                className="font-semibold hover:text-blue-500 flex items-center gap-2"
-              >
-                Favorite
-                {Object.keys(favorites).length > 0 && (
-                  <span className="bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
-                    {Object.keys(favorites).length}
-                  </span>
-                )}
-              </Link>
-            </div>
-          )}
         </button>
+
+        {menuOpen && (
+          <div className="absolute top-full left-0 w-full bg-slate-100 shadow-md z-10 md:hidden px-6 pb-4 flex flex-col justify-center items-center gap-4 transition-all duration-500">
+            <Link href="/" className="font-semibold hover:text-blue-500">
+              Home
+            </Link>
+            <Link
+              href="/favorite"
+              className="font-semibold hover:text-blue-500 flex items-center gap-2"
+            >
+              Favorite
+              {favoriteCount > 0 && (
+                <span className="bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+                  {Object.keys(favorites).length}
+                </span>
+              )}
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
