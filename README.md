@@ -14,9 +14,9 @@ Deployed on **Vercel** -- [Live Demo](https://ricky-morty-xi.vercel.app)
 
 🛠️ **Technologies Used:**
 
-- Next.js: React framework for building fast, server-rendered web apps.
-- TypeScript: Type-safe JavaScript, ensuring better code quality.
-- Tailwind CSS: For rapid UI development.
-- React Context: For managing global app state (favorites).
-- React Paginate: for implementing pagination with a smooth user experience.
-- Rick and Morty API: Public API to fetch character data
+- **Next.js**: React framework for building fast, server-rendered web apps.
+- **TypeScript**: Type-safe JavaScript, ensuring better code quality.
+- **Tailwind CSS**: For rapid UI development.
+- **React Context**: For managing global app state (favorites).
+- **React Paginate**: for implementing pagination with a smooth user experience.
+- **Rick and Morty API**: Public API to fetch character data
