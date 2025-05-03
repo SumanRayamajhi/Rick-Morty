@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <FavoritesProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="container mx-auto pt-20 px-6">{children}</main>
         </FavoritesProvider>
       </body>
     </html>
