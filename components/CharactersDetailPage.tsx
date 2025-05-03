@@ -63,7 +63,7 @@ export default function CharactersDetailPage() {
             <p>
               Status:
               <span
-                className={`font-semibold px-1.5 py-0.5 rounded-md ${
+                className={`font-semibold px-2 py-0.5 ml-3 rounded-md ${
                   character.status === "Alive"
                     ? "bg-green-500"
                     : character.status === "Dead"
