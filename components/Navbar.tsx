@@ -25,7 +25,7 @@ function Navbar() {
           <div className="relative font-semibold">
             <Link href="/favorite" className="flex items-center space-x-1">
               {Object.keys(favorites).length > 0 && (
-                <span className="absolute -top-1 -right-5 bg-slate-100 text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+                <span className="absolute -top-1 -right-5 bg-white text-red-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
                   {Object.keys(favorites).length}
                 </span>
               )}
