@@ -1,4 +1,4 @@
-🚀 Rick and Morty Character
+🚀 **Rick and Morty Character**
 
 A responsive web app built with **Next.js**, **TypeScript**, and **Tailwind CSS** that lets users browse, search, and favorite characters from the **Rick and Morty** using the official public API.
 
