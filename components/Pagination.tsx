@@ -9,21 +9,25 @@ export default function Pagination({
   setPageNumber: (page: number) => void;
   totalPages: number;
 }) {
+  if (totalPages <= 1) return null;
+
   return (
     <div className="flex justify-center">
       <ReactPaginate
-        className="flex gap-4 text-lg"
-        activeClassName="font-bold underline"
-        previousLabel={
-          <span className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded">
-            Prev
-          </span>
-        }
-        nextLabel={
-          <span className="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white px-2 py-1 rounded">
-            Next
-          </span>
-        }
+        breakLabel="..."
+        nextLabel="Next →"
+        previousLabel="← Prev"
+        containerClassName="flex flex-wrap items-center gap-2"
+        pageClassName="block"
+        pageLinkClassName="px-3 py-1 rounded-md hover:bg-slate-200 transition-colors cursor-pointer"
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={2}
+        previousClassName="block"
+        previousLinkClassName="px-3 py-1 bg-slate-100 rounded-md hover:bg-slate-200 cursor-pointer font-semibold"
+        nextClassName="block"
+        nextLinkClassName="px-3 py-1 bg-slate-100 rounded-md hover:bg-slate-200 cursor-pointer font-semibold"
+        activeLinkClassName="bg-slate-200 font-bold"
+        breakClassName="px-2"
         forcePage={pageNumber - 1}
         pageCount={totalPages}
         onPageChange={(data) => setPageNumber(data.selected + 1)}
