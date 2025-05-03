@@ -21,9 +21,7 @@ interface Character {
 
 export default function CharactersDetailPage() {
   const params = useParams();
-  console.log("params", params);
   const id = Array.isArray(params?.id) ? params.id[0] : params?.id;
-  console.log("id:", id);
 
   const [character, setCharacter] = useState<Character | null>(null);
 
