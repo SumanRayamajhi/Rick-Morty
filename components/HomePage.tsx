@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Cards from "@/components/Cards";
 import Search from "@/components/Search";
 import Pagination from "@/components/Pagination";
@@ -18,9 +18,6 @@ interface Character {
 interface ApiResponse {
   info: { pages: number };
   results: Character[];
-  onAddFavorite: (char: Character) => void;
-  onRemoveFavorite: (id: number) => void;
-  isFavorite: (id: number) => void;
 }
 
 export default function HomePage() {
@@ -32,7 +29,7 @@ export default function HomePage() {
 
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
-  const fetchDataFromApi = async () => {
+  const fetchDataFromApi = useCallback(async () => {
     setLoading(true);
     let url = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
     if (search !== "") {
@@ -40,8 +37,10 @@ export default function HomePage() {
     }
     try {
       const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error("Not Found");
+      if (res.status === 404) {
+        setFetchData(null);
+        setError(true);
+        return;
       }
       const data: ApiResponse = await res.json();
       setFetchData(data);
@@ -53,7 +52,7 @@ export default function HomePage() {
       setError(true);
     }
     setLoading(false);
-  };
+  }, [pageNumber, search]);
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
