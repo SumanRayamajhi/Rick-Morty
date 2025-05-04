@@ -46,12 +46,17 @@ function Navbar() {
 
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-slate-100 shadow-md z-10 md:hidden px-6 pb-4 flex flex-col justify-center items-center gap-4 transition-all duration-500">
-            <Link href="/" className="font-semibold hover:text-blue-500">
+            <Link
+              href="/"
+              className="font-semibold hover:text-blue-500"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
               Home
             </Link>
             <Link
               href="/favorite"
-              className="font-semibold hover:text-blue-500 flex items-center gap-2"
+              className="font-semibold hover:text-blue-500 flex items-center gap-2 "
+              onClick={() => setMenuOpen(!menuOpen)}
             >
               Favorite
               {favoriteCount > 0 && (
