@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
 import Cards from "@/components/Cards";
 import { useFavorites } from "@/app/context/FavoritesContext";
 
 export default function FavoritePage() {
-  const { favorites, removeFavorite, isFavorite } = useFavorites();
+  const { favorites, removeFavorite, isFavorite, clearFavorites } =
+    useFavorites();
   const charactersArr = Object.values(favorites);
 
   return (
@@ -17,12 +17,25 @@ export default function FavoritePage() {
       {charactersArr.length === 0 ? (
         <p className="text-center text-gray-500">No favorites yet.</p>
       ) : (
-        <Cards
-          results={charactersArr}
-          onAddFavorite={() => {}}
-          onRemoveFavorite={removeFavorite}
-          isFavorite={isFavorite}
-        />
+        <>
+          <Cards
+            results={charactersArr}
+            onAddFavorite={() => {}}
+            onRemoveFavorite={removeFavorite}
+            isFavorite={isFavorite}
+          />
+          <button
+            type="button"
+            onClick={() => {
+              if (confirm("Are you sure you want to clear all favorites?")) {
+                clearFavorites();
+              }
+            }}
+            className="block mx-auto mb-6 bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded"
+          >
+            Clear all Favorites
+          </button>
+        </>
       )}
     </div>
   );

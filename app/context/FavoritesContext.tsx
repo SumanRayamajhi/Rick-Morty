@@ -21,6 +21,7 @@ interface FavoritesContextType {
   favorites: { [key: number]: Character };
   addFavorite: (char: Character) => void;
   removeFavorite: (id: number) => void;
+  clearFavorites: () => void;
   isFavorite: (id: number) => boolean;
 }
 
@@ -61,9 +62,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
 
   const isFavorite = (id: number) => id in favorites;
 
+  const clearFavorites = () => {
+    setFavorites({});
+  };
+
   return (
     <FavoritesContext.Provider
-      value={{ favorites, addFavorite, removeFavorite, isFavorite }}
+      value={{
+        favorites,
+        addFavorite,
+        removeFavorite,
+        isFavorite,
+        clearFavorites,
+      }}
     >
       {children}
     </FavoritesContext.Provider>
